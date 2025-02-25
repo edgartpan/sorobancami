@@ -2,9 +2,9 @@ var cifras = document.getElementById("cifras");
 var resultado = document.getElementById("resultado");
 var initial = 0;
 var finalresult = 0;
-var colors = ["grey", "grey", "grey", "red", "blue", "green", "purple", "grey"];
+var rotatingColors = ["red", "blue", "green", "purple"]; // Updated colors
 var maximumValue = 15;
-var delayTime = .5;
+var delayTime = 0.5;
 var numberOfValues = 4;
 var increaseSpeed = false;
 var increaseSequence = false;
@@ -17,32 +17,13 @@ var buenas = document.getElementById("buenas");
 var malas = document.getElementById("malas");
 var nivel = document.getElementById("nivel");
 var valores = document.getElementById("valores");
-buenas.innerHTML = bien;
-malas.innerHTML = mal;
-nivel.innerHTML = level;
-valores.innerHTML = valor;
 var botonBuenas = document.getElementById("botonBuenas");
 var botonMalas = document.getElementById("botonMalas");
-var seeresult = document.getElementById("seeresult");
-var redisplay = document.getElementById("redisplay");
-
-var beepSound = new Audio('audio/beep_short.mp3');
-
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
 function displayWithDelay(values, delay, callback) {
     var i = 0;
-    var rotatingColors = ["red", "blue", "green", "purple"]; // Colors for numbers
-
     function showNextValue() {
         if (i < values.length) {
-            if (i > 2) {
-                console.log('no audio');
-                // beepSound.play();
-            }
-
             cifras.innerText = values[i];
 
             // Assign colors based on position
@@ -62,7 +43,6 @@ function displayWithDelay(values, delay, callback) {
     }
     showNextValue();
 }
-
 
 function generateSequence(numberOfValues) {
     valuesToDisplay = [".", "..", "..."];
@@ -86,27 +66,20 @@ function generateSequence(numberOfValues) {
     finalresult = currentresult;
     valuesToDisplay.push('R =');
     displayWithDelay(valuesToDisplay, delayTime * 1000);
-    console.log(delayTime);
-    console.log(numberOfValues)
 }
 
 function todo() {
-    // Update values only if they haven't been modified by checkboxes
     if (!increaseSpeed && !increaseSequence) {
         maximumValue = parseInt(document.getElementById("maxValue").value);
         delayTime = parseFloat(document.getElementById("delay").value);
         numberOfValues = parseInt(document.getElementById("numCount").value);
     }
 
-    // Get checkbox states
     increaseSpeed = document.getElementById("increaseSpeed").checked;
     increaseSequence = document.getElementById("increaseSequence").checked;
 
-    // Reset result display
     resultado.innerHTML = " ";
     generateSequence(numberOfValues);
-
-    // Update the inputs to reflect current values
     updateUI();
 }
 
@@ -116,32 +89,28 @@ function todoBien() {
     buenas.innerHTML = bien;
     nivel.innerHTML = level;
 
-    // Apply checkbox logic
     if (increaseSpeed) {
-        delayTime = Math.max(0.1, delayTime - 0.05); // Prevents delay from getting too fast
+        delayTime = Math.max(0.1, delayTime - 0.05);
     }
     if (increaseSequence) {
         numberOfValues += 1;
     }
 
-    // Update the UI with the new values
     updateUI();
-
     botonBuenas.style.display = "none";
     botonMalas.style.display = "none";
 }
 
-
-
 function todoMal() {
-    mal = mal + 1;
+    mal += 1;
     malas.innerHTML = mal;
     botonBuenas.style.display = "none";
     botonMalas.style.display = "none";
 }
 
 function verResultado() {
-    resultado.innerHTML = finalresult;
+    //resultado.innerHTML = finalresult;
+    cifras.innerHTML = 'R = ' + finalresult;
     botonBuenas.style.display = "inline";
     botonMalas.style.display = "inline";
 }
@@ -150,23 +119,17 @@ function reDisplay() {
     displayWithDelay(valuesToDisplay, delayTime * 1000);
 }
 
-function setSettings() {
-    maximumValue = parseInt(document.getElementById("maxValue").value);
-    delayTime = parseFloat(document.getElementById("delay").value);
-    numberOfValues = parseInt(document.getElementById("numCount").value);
-    increaseSpeed = document.getElementById("increaseSpeed").checked;
-    increaseSequence = document.getElementById("increaseSequence").checked;
-}
-
-
 function updateUI() {
-    document.getElementById("delay").value = delayTime.toFixed(2); // Format to 2 decimals
+    document.getElementById("delay").value = delayTime.toFixed(2);
     document.getElementById("numCount").value = numberOfValues;
-    document.getElementById("valores").innerHTML = numberOfValues; // ✅ Now updates "valores" correctly
+    document.getElementById("valores").innerHTML = numberOfValues;
 }
-
 
 function toggleSettings() {
     var panel = document.getElementById("settingsPanel");
     panel.style.display = (panel.style.display === "none" || panel.style.display === "") ? "block" : "none";
+}
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }

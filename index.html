@@ -2,68 +2,57 @@
 <html>
 <head>
     <title>Number Display</title>
-    <style>
-        #settingsPanel {
-            display: none;
-            padding: 10px;
-            border: 1px solid #ccc;
-            background-color: #f9f9f9;
-            width: 250px;
-            position: absolute;
-            top: 50px;
-            left: 20px;
-            z-index: 100;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div id="container">
+        <!-- Indicators -->
+        <div>
+            <span>Correct: <span id="buenas">0</span></span> |
+            <span>Incorrect: <span id="malas">0</span></span> |
+            <span>Level: <span id="nivel">1</span></span> |
+            <span>Values: <span id="valores">4</span></span>
+        </div>
 
-    <!-- Indicators -->
-    <div>
-        <span>Correct: <span id="buenas">0</span></span>
-        <span>Incorrect: <span id="malas">0</span></span>
-        <span>Level: <span id="nivel">1</span></span>
-        <span>Number of values: <span id="valores">4</span></span>
+        <!-- Settings Panel (Hidden by Default) -->
+        <button onclick="toggleSettings()">Settings</button>
+        <div id="settingsPanel">
+            <label for="maxValue">Max Value:</label>
+            <input type="number" id="maxValue" value="15">
+
+            <label for="delay">Delay (seconds):</label>
+            <input type="number" id="delay" value="0.5" step="0.1">
+
+            <label for="numCount">Numbers to Display:</label>
+            <input type="number" id="numCount" value="4">
+
+            <input type="checkbox" id="increaseSpeed">
+            <label for="increaseSpeed">Increase Speed</label>
+
+            <input type="checkbox" id="increaseSequence">
+            <label for="increaseSequence">Increase Sequence</label>
+
+            <button onclick="toggleSettings()">OK</button>
+        </div>
+
+        <!-- Numbers Display -->
+        <div>
+            <span id="cifras"></span>
+            <span id="resultado"></span>
+        </div>
+
+        <!-- Control Buttons -->
+        <div id="controls">
+            <button onclick="todo()">Generate</button>
+            <button onclick="verResultado()">Show Result</button>
+            <button onclick="reDisplay()">Re-Display</button>
+        </div>
+
+        <!-- Answer Buttons (Hidden initially) -->
+        <button id="botonBuenas" onclick="todoBien()" style="display: none;">Correct</button>
+        <button id="botonMalas" onclick="todoMal()" style="display: none;">Incorrect</button>
     </div>
-
-    <!-- Settings Panel (Hidden by Default) -->
-    <button onclick="toggleSettings()">Settings</button>
-    <div id="settingsPanel">
-        <label for="maxValue">Max Value:</label>
-        <input type="number" id="maxValue" value="15"><br>
-
-        <label for="delay">Delay (seconds):</label>
-        <input type="number" id="delay" value="0.5" step="0.1"><br>
-
-        <label for="numCount">Numbers to Display:</label>
-        <input type="number" id="numCount" value="4"><br>
-
-        <input type="checkbox" id="increaseSpeed">
-        <label for="increaseSpeed">Increase Speed</label><br>
-
-        <input type="checkbox" id="increaseSequence">
-        <label for="increaseSequence">Increase Sequence</label><br>
-
-        <button onclick="toggleSettings()">OK</button>
-    </div>
-    <br>
-
-    <!-- Numbers -->
-    <div>
-        <span id="cifras" style="font-size: 24px; font-weight: bold;"></span>
-        <span id="resultado" style="font-size: 24px; font-weight: bold;"></span>
-    </div>
-    
-    <br>
-
-    <!-- Control Buttons -->
-    <button onclick="todo()">Generate Numbers</button>
-    <button onclick="verResultado()">Show Result</button>
-    <button onclick="reDisplay()">Re-Display Series</button>
-    <br>
-    <!-- Answer Buttons (Hidden initially) -->
-    <button id="botonBuenas" onclick="todoBien()" style="display: none;">Correct</button>
-    <button id="botonMalas" onclick="todoMal()" style="display: none;">Incorrect</button>
 
     <script src="script.js"></script>
 </body>
