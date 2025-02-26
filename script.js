@@ -11,14 +11,15 @@ var increaseSequence = false;
 var valuesToDisplay = [];
 var mal = 0;
 var bien = 0;
-var level = 1;
 var valor = 4;
 var buenas = document.getElementById("buenas");
 var malas = document.getElementById("malas");
-var nivel = document.getElementById("nivel");
 var valores = document.getElementById("valores");
+var velocidad = document.getElementById("velocidad");
 var botonBuenas = document.getElementById("botonBuenas");
 var botonMalas = document.getElementById("botonMalas");
+var beepSound = new Audio('audio/beep_short.mp3');
+velocidad.innerHTML = delayTime;
 
 function displayWithDelay(values, delay, callback) {
     var i = 0;
@@ -33,7 +34,11 @@ function displayWithDelay(values, delay, callback) {
                 cifras.style.color = "black"; // Last one always black
             } else {
                 cifras.style.color = rotatingColors[(i - 3) % rotatingColors.length]; // Rotate through colors
+                beepSound.currentTime = 0; // Restart the sound if it's already playing
+                beepSound.play();
             }
+
+
 
             i++;
             setTimeout(showNextValue, delay);
@@ -64,33 +69,32 @@ function generateSequence(numberOfValues) {
     }
 
     finalresult = currentresult;
-    valuesToDisplay.push('R =');
+    valuesToDisplay.push('R=');
     displayWithDelay(valuesToDisplay, delayTime * 1000);
 }
 
 function todo() {
-    if (!increaseSpeed && !increaseSequence) {
-        maximumValue = parseInt(document.getElementById("maxValue").value);
-        delayTime = parseFloat(document.getElementById("delay").value);
-        numberOfValues = parseInt(document.getElementById("numCount").value);
-    }
+    // Always update numberOfValues from the input field
+    numberOfValues = parseInt(document.getElementById("numCount").value);
+    maximumValue = parseInt(document.getElementById("maxValue").value);
+    delayTime = parseFloat(document.getElementById("delay").value);
 
     increaseSpeed = document.getElementById("increaseSpeed").checked;
     increaseSequence = document.getElementById("increaseSequence").checked;
 
     resultado.innerHTML = " ";
     generateSequence(numberOfValues);
-    updateUI();
+    updateUI(); // Ensures UI is refreshed
 }
+
 
 function todoBien() {
     bien += 1;
-    level += 1;
     buenas.innerHTML = bien;
-    nivel.innerHTML = level;
+    velocidad.innerHTML = delayTime;
 
     if (increaseSpeed) {
-        delayTime = Math.max(0.1, delayTime - 0.05);
+        delayTime = Math.max(0.1, delayTime * 0.95);
     }
     if (increaseSequence) {
         numberOfValues += 1;
@@ -110,7 +114,7 @@ function todoMal() {
 
 function verResultado() {
     //resultado.innerHTML = finalresult;
-    cifras.innerHTML = 'R = ' + finalresult;
+    cifras.innerHTML = 'R=' + finalresult;
     botonBuenas.style.display = "inline";
     botonMalas.style.display = "inline";
 }
@@ -123,7 +127,10 @@ function updateUI() {
     document.getElementById("delay").value = delayTime.toFixed(2);
     document.getElementById("numCount").value = numberOfValues;
     document.getElementById("valores").innerHTML = numberOfValues;
+    document.getElementById("velocidad").innerHTML = delayTime.toFixed(2);
 }
+
+
 
 function toggleSettings() {
     var panel = document.getElementById("settingsPanel");

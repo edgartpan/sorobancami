@@ -11,8 +11,27 @@
         <div>
             <span>Correct: <span id="buenas">0</span></span> |
             <span>Incorrect: <span id="malas">0</span></span> |
-            <span>Level: <span id="nivel">1</span></span> |
+            <span>Delay: <span id="velocidad">0.5</span></span> |
             <span>Values: <span id="valores">4</span></span>
+        </div>
+
+        <!-- Control Buttons -->
+        <div id="controls">
+            <button onclick="todo()" class="button_purple">Generate</button>
+            <button onclick="verResultado()" class="button_purple">Show Result</button>
+            <button onclick="reDisplay()" class="button_purple">Re-Display</button>
+        </div>
+
+        <!-- Numbers Display -->
+        <div>
+            <span id="cifras" class="numeros">&nbsp;</span>
+            <span id="resultado"></span>
+        </div>
+
+        <!-- Correct/Incorrect (Hidden initially)-->
+        <div style="height: 70px;">
+            <button id="botonBuenas" class="button_lightblue" onclick="todoBien()" style="display: none;">Correct</button>
+            <button id="botonMalas" class="button_pink" onclick="todoMal()" style="display: none;">Incorrect</button>    
         </div>
 
         <!-- Settings Panel (Hidden by Default) -->
@@ -20,38 +39,22 @@
         <div id="settingsPanel">
             <label for="maxValue">Max Value:</label>
             <input type="number" id="maxValue" value="15">
-
+            <br>
             <label for="delay">Delay (seconds):</label>
             <input type="number" id="delay" value="0.5" step="0.1">
-
+            <br>
             <label for="numCount">Numbers to Display:</label>
             <input type="number" id="numCount" value="4">
-
+            <br>
             <input type="checkbox" id="increaseSpeed">
             <label for="increaseSpeed">Increase Speed</label>
-
+            <br>
             <input type="checkbox" id="increaseSequence">
             <label for="increaseSequence">Increase Sequence</label>
-
-            <button onclick="toggleSettings()">OK</button>
+            <br><br>
+            <button onclick="toggleSettings()" class="button_purple" style="width: 100%;">OK</button>
         </div>
 
-        <!-- Numbers Display -->
-        <div>
-            <span id="cifras"></span>
-            <span id="resultado"></span>
-        </div>
-
-        <!-- Control Buttons -->
-        <div id="controls">
-            <button onclick="todo()">Generate</button>
-            <button onclick="verResultado()">Show Result</button>
-            <button onclick="reDisplay()">Re-Display</button>
-        </div>
-
-        <!-- Answer Buttons (Hidden initially) -->
-        <button id="botonBuenas" onclick="todoBien()" style="display: none;">Correct</button>
-        <button id="botonMalas" onclick="todoMal()" style="display: none;">Incorrect</button>
     </div>
 
     <script src="script.js"></script>
