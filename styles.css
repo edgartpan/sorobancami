@@ -93,7 +93,7 @@ button:hover {
     border:none;
     padding: 15px 15px;
     color:#fff;
-    margin:15px 5px;
+    margin:15px 0px;
 }
 
 .button_purple:hover {
@@ -140,6 +140,12 @@ button:hover {
     display: block;
 }
 
+#controls {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0px;
+}
+
 #controls button {
     display: inline-block;
     width: 25%;
@@ -150,4 +156,21 @@ button:hover {
         width: auto;
         margin-bottom: 5px;
     }
+
+    .indicators {
+        font-size: 14px;
+    }
+
+    .button_purple {
+        font-size: 12px;
+    }
+
+    .button_lightblue {
+        font-size: 12px;
+    }
+
+    .button_pink {
+        font-size: 12px;
+    }
+
 }
