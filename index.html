@@ -4,55 +4,78 @@
     <title>Number Display</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+    </style>
 </head>
 <body>
     <div id="container">
         <!-- Indicators -->
         <div class="indicators">
-            <span>Correct: <span id="buenas">0</span></span> |
-            <span>Incorrect: <span id="malas">0</span></span> |
-            <span>Delay: <span id="velocidad">0.5</span></span> |
-            <span>Values: <span id="valores">4</span></span>
+            <div div style="width:85%">
+                <span>Correctas <span id="buenas">0</span>&nbsp;&nbsp;-&nbsp;</span>
+                <span><span id="malas">0 </span> Incorrectas</span>
+                <br>
+                <span>Frecuencia: <span id="velocidad">0.5</span> s</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
+                <span>Secuencia: <span id="valores">4</span> núm</span>
+            </div>
+            <div style="width:15%; padding-top: 15px;">
+                <button onclick="toggleSettings()" id="settingsButton">⚙️</button>
+            </div>
+        </div>
+
+        <!-- Numbers Display -->
+        <div id="sub-container">
+            <span id="cifras" class="numeros">&nbsp;</span>
+            <div id="answerContainer" style="display: none;">
+                <input type="number" id="userAnswer">
+                <button onclick="validarRespuesta()" class="button-3d" id="validarButton">✅ Validar</button>
+                <div class="retro" id="retro"></div>
+            </div>
+            <span class="retro" id="resultado"></span>
         </div>
 
         <!-- Control Buttons -->
         <div id="controls">
-            <button onclick="todo()" class="button_purple">Generate</button>
-            <button onclick="verResultado()" class="button_purple">Show Result</button>
-            <button onclick="reDisplay()" class="button_purple">Re-Display</button>
+            <div class="subcontrols">
+                <button onclick="reDisplay()" class="button-3d" id="repeatButton" style="display: none;">🔁 Repetir</button>
+                <button onclick="verResultado()" class="button-3d" id="showResultButton" style="display: none;">👀 Resultado</button>
+            </div>
+            <div class="subcontrols">
+                <button onclick="todo()" class="button-3d" id="generateButton">🎲 Generar</button>
+            </div>
         </div>
 
-        <!-- Numbers Display -->
-        <div>
-            <span id="cifras" class="numeros">&nbsp;</span>
-            <span id="resultado"></span>
+        <div id="inferior">
+            <!-- Settings Button -->
+            <button onclick="" class="button-3d" id="donateButton">👍 Donar</button>
         </div>
 
-        <!-- Correct/Incorrect (Hidden initially)-->
-        <div style="height: 70px;">
-            <button id="botonBuenas" class="button_lightblue" onclick="todoBien()" style="display: none;">Correct</button>
-            <button id="botonMalas" class="button_pink" onclick="todoMal()" style="display: none;">Incorrect</button>    
-        </div>
-
-        <!-- Settings Panel (Hidden by Default) -->
-        <button onclick="toggleSettings()">Settings</button>
-        <div id="settingsPanel">
-            <label for="maxValue">Max Value:</label>
+        <!-- Settings Overlay + Panel -->
+        <div id="settingsOverlay" style="display: none;"></div>
+        <div id="settingsPanel" style="display: none;">
+            <div class="title">
+                <span>Ajustes</span>
+            </div>
+            <label for="maxValue">Valor Máximo:</label>
             <input type="number" id="maxValue" value="15">
             <br>
-            <label for="delay">Delay (seconds):</label>
+            <label for="delay">Delay (segundos):</label>
             <input type="number" id="delay" value="0.5" step="0.1">
             <br>
-            <label for="numCount">Numbers to Display:</label>
+            <label for="numCount">Número de cifras:</label>
             <input type="number" id="numCount" value="4">
             <br>
             <input type="checkbox" id="increaseSpeed">
-            <label for="increaseSpeed">Increase Speed</label>
+            <label for="increaseSpeed">➕ velocidad</label>
             <br>
             <input type="checkbox" id="increaseSequence">
-            <label for="increaseSequence">Increase Sequence</label>
+            <label for="increaseSequence">➕ no. de cifras</label>
             <br><br>
-            <button onclick="toggleSettings()" class="button_purple" style="width: 100%;">OK</button>
+            <div style="text-align: center;">
+                <button onclick="applySettings()" class="button-3d" style="width: auto;">OK</button>
+                <button onclick="cancelSettings()" class="button-3d" style="width: auto;">Cancelar</button>
+            </div>
         </div>
 
     </div>
