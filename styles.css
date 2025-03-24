@@ -61,7 +61,7 @@ body {
 }
 
 #sub-container {
-    height: 40%;
+    height: 35%;
     display: block;
 }
 
@@ -187,7 +187,7 @@ button-3d:active {
     position: absolute;
     bottom: 0;
     width: 100%;
-    padding-bottom: 30px;
+    padding-bottom: 70px;
     text-align: center; /* optional: to center the button */
 }
 
