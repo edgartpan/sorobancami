@@ -133,7 +133,7 @@ userAnswer.addEventListener("keydown", function(event) {
 function verResultado() {
     cifras.style.display = "none";
     answerContainer.style.display = "none";
-    resultado.innerHTML = 'El resultado es:' + finalresult;
+    resultado.innerHTML = 'El resultado es: ' + finalresult;
 }
 
 function reDisplay() {

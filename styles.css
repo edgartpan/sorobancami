@@ -34,10 +34,11 @@
     font-style: italic;
   }
   
-html, body {
+  html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 /* General Styles */
@@ -50,14 +51,17 @@ body {
 }
 
 #container {
-    width:500px;
+    width: 100%;
+    max-width: 500px;
     height: 100vh;
     margin: 0 auto;
     background-color: #F5F5F5;
+    overflow-x: hidden;
+    position: relative;
 }
 
 #sub-container {
-    height: 350px;
+    height: 40%;
     display: block;
 }
 
@@ -78,6 +82,8 @@ body {
 .retro {
     font-size: 24px;
     font-weight: 600;
+    display: block;
+    padding-top: 100px;
 }
 
 /*Button styles*/
@@ -150,7 +156,7 @@ button-3d:active {
 
 
 #answerContainer {
-    padding-top: 100px;
+    padding-top: 60px;
 }
 
 /* Settings Panel Popup */
@@ -158,8 +164,8 @@ button-3d:active {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    right: 0;
+    bottom: 0;
     background: rgba(0, 0, 0, 0.5);
     z-index: 99;
 }
@@ -182,8 +188,9 @@ button-3d:active {
 #inferior {
     position: absolute;
     bottom: 0;
-    width: inherit;
+    width: 100%;
     padding-bottom: 30px;
+    text-align: center; /* optional: to center the button */
 }
 
 .title {
@@ -219,6 +226,8 @@ input[type="checkbox"] {
 
 input[type="number"] {
     font-family: Inria Sans;
+    width: 50px;
+    margin-left: 10px;
 }
 
 .numeros {
@@ -254,18 +263,33 @@ input[type="number"] {
     }
 
     .indicators {
-        font-size: 20px;
+        font-size: 14px;
+        line-height: 1.5;
     }
 
-    .button_purple {
-        font-size: 12px;
+    #answerContainer {
+        padding-top: 20px;
     }
 
-    .button_lightblue {
-        font-size: 12px;
+    .button-3d {
+        font-size: 18px;
     }
 
-    .button_pink {
-        font-size: 12px;
+    label {
+        display: inline;
+        margin-top: 10px;
+        font-size: 16px;
     }
+
+    #settingsPanel {
+        width: 80%;
+        max-width: 250px;
+        top: 10%;
+        line-height: 2.5;
+    }
+
+    .retro {
+        font-size: 18px;
+    }
+
 }
