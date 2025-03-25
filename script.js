@@ -52,7 +52,7 @@ function displayWithDelay(values, delay, callback) {
             setTimeout(showNextValue, delay);
         } else {
             cifras.style.display = "none";
-            answerContainer.style.display = "block";
+            answerContainer.style.display = "flex";
             userAnswer.focus();
             repeatButton.style.display = "inline-block";
             showResultButton.style.display = "inline-block";
@@ -71,10 +71,12 @@ function generateSequence(numberOfValues) {
     valuesToDisplay.push(currentresult);
 
     for (let i = 1; i < numberOfValues; i++) {
-        let nextValue = getRandomInt(currentresult * -1, maximumValue - currentresult);
-        if (nextValue === 0) nextValue -= 1;
+        let minAllowed = -currentresult;
+        let maxAllowed = maximumValue - currentresult;
+        let nextValue = getRandomInt(minAllowed, maxAllowed);
+        if (nextValue === 0) nextValue = -1; // still avoid 0 if needed
         currentresult += nextValue;
-        if (currentresult < 0) currentresult = 0;
+        
         valuesToDisplay.push(nextValue);
     }
 

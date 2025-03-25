@@ -61,7 +61,7 @@ body {
 }
 
 #sub-container {
-    height: 35%;
+    height: 40%;
     display: block;
 }
 
@@ -74,6 +74,14 @@ body {
     display:flex;
 }
 
+.indicators_small {
+    font-size: 14px;
+}
+
+.gear{
+    padding-top: 15px;
+} 
+
 #cifras {
     font-size: 160px;
     padding-top: 70px;
@@ -82,6 +90,8 @@ body {
 .retro {
     font-size: 24px;
     font-weight: 600;
+    padding-top: 20px;
+    width: 100%;
 }
 
 /*Button styles*/
@@ -139,6 +149,7 @@ button-3d:active {
 #settingsButton {
     background-color: #000000;
     font-size: 24px;
+    border: none;
 }
 
 #donateButton {
@@ -154,7 +165,12 @@ button-3d:active {
 
 
 #answerContainer {
-    padding-top: 60px;
+    padding-top: 25px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Settings Panel Popup */
@@ -208,10 +224,14 @@ label {
     height: 150px;
     padding: 0px;
     margin: 15px;
-    border: 1px solid #ccc;
-    border-radius: 0px;
     text-align: center;
     font-size: 80px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+#userAnswer:focus {
+    border: 1px solid black;
 }
 
 input[type="checkbox"] {
@@ -220,6 +240,16 @@ input[type="checkbox"] {
     margin: 15px;
     border: 1px solid #ccc;
     border-radius: 0px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 input[type="number"] {
@@ -265,6 +295,10 @@ input[type="number"] {
         line-height: 1.5;
     }
 
+    .indicators_small {
+        font-size: 12px;
+    }
+
     #answerContainer {
         padding-top: 20px;
     }
@@ -285,5 +319,9 @@ input[type="number"] {
         top: 10%;
         line-height: 2.5;
     }
+
+    .gear{
+        padding-top: 5px;
+    } 
 
 }
